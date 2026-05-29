@@ -209,15 +209,4 @@ The 25 mock posts in `data/seed-posts.json` are crafted so at least one post exe
 
 ---
 
-## What I'd build next
-
-If this became a production tool, the next things on the list:
-
-- Multi-reviewer support with role-based queue assignment and SSO.
-- Per-platform posting integrations with rate limits, per-account daily caps, and platform-specific TOS guardrails.
-- Reviewer feedback loop: approve/reject signals → re-tune the drafter (or fine-tune a small model on confirmed-good drafts).
-- Per-creator memory ("we've already engaged with this person 3x this week — back off").
-- A/B testing of drafting prompts against real-world reply rates, not just internal review approval.
-- Analytics: time-to-decision, approval rate by topic, post-comment engagement of approved drafts.
-- Smarter classifier signals — author follower count, post age, comment count, prior decisions on similar posts.
-- A second LLM pass that double-checks each approved comment from a fresh adversarial perspective before posting.
+See [`APPROACH.md`](./APPROACH.md) for the design reasoning, what's mocked vs real, risk analysis, and what I'd build next if this became production software.
