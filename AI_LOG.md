@@ -43,11 +43,10 @@ This log is mostly about #2.
 
 ## Cost
 
-Tiny. The system prompt is cached so it isn't re-tokenized each call.
+Tiny, mostly because the system prompt is cached. Claude only re-tokenizes the short post body on each call, not the full ~1.5k-token Sonia voice + style guide that sits on top.
 
-- Per post: under a cent.
-- Full pipeline over all 30 posts: 5–15 cents.
-- The whole build: a fraction of $5.
+- Per post: a small fraction of a cent — closer to $0.001 than $0.01 once caching is warm.
+- Full pipeline over all 30 posts: 5–15 cents total.
 
 ---
 
