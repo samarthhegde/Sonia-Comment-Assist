@@ -6,16 +6,18 @@ Built for the Consumer Growth Engineering take-home.
 
 ---
 
-## Quick start (TL;DR — 4 commands)
+## Quick start (TL;DR)
 
 ```bash
 npm install
-echo "ANTHROPIC_API_KEY=sk-ant-your-key-here" > .env.local
-npm run setup      # seeds 25 mock posts + runs full AI pipeline (~60–120s)
+echo "ANTHROPIC_API_KEY=sk-ant-your-key-here" > .env.local   # ← OPTIONAL, skip this line to use the mock LLM
+npm run setup      # seeds 25 mock posts + runs full AI pipeline (~60–120s with key, instant without)
 npm run dev
 ```
 
 Open <http://localhost:3000>. The review queue should have 15+ drafted replies waiting.
+
+**That second line is optional.** If you don't want to use an Anthropic key, just skip it — the app still runs end-to-end on a built-in mock LLM (more on that a few sections down).
 
 ### If `npm install` fails with `NODE_MODULE_VERSION` mismatch
 
