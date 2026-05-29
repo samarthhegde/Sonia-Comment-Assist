@@ -29,18 +29,18 @@ npm rebuild better-sqlite3
 
 Then continue with `npm run setup`.
 
-### Don't have an Anthropic API key handy?
+### Without a key
 
-The app still runs. Skip the `.env.local` step. The pipeline falls back to a deterministic mock LLM (keyword-based heuristics) so you can click around the full UI, exercise the safety filter on the crafted blocker posts, and see decisions persist — just without Claude-quality draft text. Mock drafts are visibly prefixed `[mock-llm]` so you'll know which mode you're in.
+Skip the `.env.local` line. The pipeline uses a deterministic mock LLM (keyword heuristics). Full UI, safety filter, and review flow all work; draft text is templated and prefixed `[mock-llm]` so the mode is obvious.
 
-### Want to see live Reddit ingestion?
+### Live Reddit ingestion
 
 ```bash
 npm run ingest:reddit -- r/getdisciplined 10
 npm run process
 ```
 
-That pulls 10 recent public Reddit posts and runs them through the same pipeline.
+Pulls 10 recent public Reddit posts through the same pipeline.
 
 ---
 
