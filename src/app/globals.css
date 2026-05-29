@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
+/* Disable Tailwind's automatic dark mode. The app is light-only — every
+   "dark:" class in the components is ignored unless someone adds a .dark
+   class to a parent (which we never do). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Soft warm sage page background, white cards above for clean contrast.
+     Light mode only — internal tool, single brand voice. */
+  --background: #ecefe8;
+  --foreground: #1c1917;
+  --surface: #ffffff;
+  --border: #e2e5dd;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -12,15 +22,28 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  /* Subtle teal-tinted radial glow at the top — small center-of-gravity. */
+  background-image: radial-gradient(
+    ellipse 100% 40% at 50% 0%,
+    rgba(13, 148, 136, 0.06),
+    transparent 70%
+  );
+  background-attachment: fixed;
+}
+
+/* Thin teal gradient band at the very top — small flourish that signals
+   "designed product" without taking real estate. */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #14b8a6 0%, #0d9488 50%, #14b8a6 100%);
+  z-index: 50;
 }
