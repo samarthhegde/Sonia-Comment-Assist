@@ -6,34 +6,39 @@ Built for the Consumer Growth Engineering take-home.
 
 ---
 
-## Quick start
+## Quick start (TL;DR — 4 commands)
 
 ```bash
-# 1. Install dependencies
 npm install
-
-# 2. Configure your Anthropic key (one line, no quotes)
-cp .env.example .env.local
-# Then edit .env.local and add: ANTHROPIC_API_KEY=sk-ant-...
-
-# 3. Seed the database (25 mock posts)
-npm run seed
-
-# 4. (Optional) Pull real Reddit posts
-npm run ingest:reddit -- r/getdisciplined 10
-
-# 5. Run the full AI pipeline over every post (~60–120 seconds)
-npm run process
-
-# 6. Start the web app
+echo "ANTHROPIC_API_KEY=sk-ant-your-key-here" > .env.local
+npm run setup      # seeds 25 mock posts + runs full AI pipeline (~60–120s)
 npm run dev
 ```
 
-Open <http://localhost:3000>. You'll see the review queue with drafted replies.
+Open <http://localhost:3000>. The review queue should have 15+ drafted replies waiting.
 
-### Without an Anthropic key
+### If `npm install` fails with `NODE_MODULE_VERSION` mismatch
 
-The app still runs. The pipeline falls back to a deterministic mock LLM (keyword-based heuristics) so you can click around the UI, see decisions persist, and exercise the safety filter — just without real Claude-quality drafts.
+That's `better-sqlite3` (a native module) compiled against a different Node version. One-line fix:
+
+```bash
+npm rebuild better-sqlite3
+```
+
+Then continue with `npm run setup`.
+
+### Don't have an Anthropic API key handy?
+
+The app still runs. Skip the `.env.local` step. The pipeline falls back to a deterministic mock LLM (keyword-based heuristics) so you can click around the full UI, exercise the safety filter on the crafted blocker posts, and see decisions persist — just without Claude-quality draft text. Mock drafts are visibly prefixed `[mock-llm]` so you'll know which mode you're in.
+
+### Want to see live Reddit ingestion?
+
+```bash
+npm run ingest:reddit -- r/getdisciplined 10
+npm run process
+```
+
+That pulls 10 recent public Reddit posts and runs them through the same pipeline.
 
 ---
 
